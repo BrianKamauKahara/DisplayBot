@@ -5,7 +5,7 @@ document.getElementById('send-button').addEventListener('click', function() {
       document.getElementById('user-input').value = '';
   
       // Simulate AI response
-      fetch('http://localhost:5500/generatePost', {
+      fetch('https://downloadbot-rq82.onrender.com/generatePost', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
