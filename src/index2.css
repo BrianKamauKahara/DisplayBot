@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, rgb(182, 218, 196), rgb(255, 255, 255), rgb(101, 173, 206));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .navbar {
+    width: 100%;
+    background-color: #ffd700;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .navbar-content {
+    display: flex;
+    gap: 90%; 
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .navbar-link {
+    color: #70849ce1;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    display: grid;
+    place-content: center;
+  }
+  
+  .navbar-link:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 600px;
+    height: 80%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #fff;
+    margin-top: 20px;
+  }
+  
+  .chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #fff;
+  }
+  
+  .input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #ffeb99;
+    border-top: 1px solid #ddd;
+  }
+  
+  #user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    margin-right: 10px;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  #send-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #ffd700;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #send-button:hover {
+    background-color: #ffc107;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+  
+  .message.user {
+    background-color: #ffd700;
+    color: #fff;
+    align-self: flex-end;
+  }
+  
+  .message.ai {
+    background-color: #fff9e5;
+    border: 1px solid #ffd700;
+    align-self: flex-start;
+  }
+  
