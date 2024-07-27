@@ -6,7 +6,7 @@ document.getElementById('send-button').addEventListener('click', function() {
       const storage = localStorage
       
       // Simulate AI response
-      fetch('https://downloadbot-rq82.onrender.com/generatePost', {
+      fetch('https://downloadbot-rq82.onrender.com/generateImage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
