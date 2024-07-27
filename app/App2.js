@@ -4,48 +4,51 @@ document.getElementById('send-button').addEventListener('click', function() {
       addMessage(userInput, 'user');
       document.getElementById('user-input').value = '';
       const storage = localStorage
-      
-      // Simulate AI response
+    
+      //Get AI response
       fetch('https://downloadbot-rq82.onrender.com/generateImage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({desc:userInput}) 
-      }) .then(response => response.json())
+      }).then(response => response.json())
       .then(result => {
         console.log(result);
-      
-        const contentHtml = `
-          <iframe src="${result.url}" style="border: none; width:100%; height:100%;"></iframe>
-          <a href="${result.url}" download="image.png" style="display: block; margin-top: 10px; text-align: center; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Download Image</a>
-        `;
+        
+        let iframeHtml = `
+          <iframe src="${result.url}" style="border: none; width:100%; height:300px; "></iframe>`
+        const buttonHtml = `
+        <button class="download-button" onclick="(function(e) {
+            navigator.clipboard.writeText('${result.url}')
+            .then(() => {
+                e.target.innerText = 'Copied to Clipboard!';
+            })
+            .catch(err => {
+                console.error('Error copying URL:', err);
+                e.target.innerText = 'Failed to Copy';
+            });
+            })(event)">Get Image URL</button>
+          `
+        iframeHtml += buttonHtml
+        ;
       
         // Add the constructed HTML as a message
-        addMessage(contentHtml, 'ai');
+        addMessage(iframeHtml, 'ai', result.url);
       });
     }})
-  
-  function addMessage(message, sender) {
+    
+  function addMessage(message, sender, url) {
     const chatBox = document.getElementById('chat-box');
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', sender);
-    messageElement.innerHTML = message;
+    messageElement.innerHTML += message;
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
   }
-  document.getElementById('download-button').addEventListener('click', () => {
-    const imageUrl = 'https://example.com/image.png';
   
-    // Create a temporary anchor element
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = 'downloaded-image.png'; 
+
   
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  })
   // CSS for messages
   const style = document.createElement('style');
   style.innerHTML = `
@@ -67,7 +70,23 @@ document.getElementById('send-button').addEventListener('click', function() {
     background-color: #fff9e5;
     border: 1px solid #ffd700;
     align-self: flex-start;
-    height: 288px;
+    height: 358px;
   }
+
+  .download-button {
+      display: grid;
+      margin-top: 10px;
+      text-align: center;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+button.download-button:hover {
+    background-color: #45a049;
+}
   `;
   document.head.appendChild(style);
